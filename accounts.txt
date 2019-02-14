@@ -1,3 +1,4 @@
 
+John : 34.0
 Tanner : 45.0
-John : 2.0
+Joe : 20.0

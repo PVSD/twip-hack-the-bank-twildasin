@@ -1,2 +1,3 @@
 
-Ronald 	:	Withdraw	:	0.56
+Mr. Pennebacker	:	Deposit	:	50.0
+John	:	Withdraw	:	5.0

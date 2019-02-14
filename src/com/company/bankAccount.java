@@ -19,7 +19,8 @@ public class bankAccount implements Comparable
     }
 
     @Override
-    public int compareTo(Object otherObject) {
+    public int compareTo(Object otherObject)
+    {
         bankAccount otherAccount = (bankAccount) otherObject;
         int retValue;
         if (balance < otherAccount.balance) {
@@ -41,26 +42,18 @@ public class bankAccount implements Comparable
     }*/
 
     public void deposit(double dp) throws IOException{
-        FileWriter fwt = new FileWriter("transactions.txt");
-        PrintWriter trans = new PrintWriter(fwt);
 
         balance = balance + dp;
-        trans.print("\n" + name + "\t:\tDeposit\t:\t" + dp);
 
-        fwt.close();
-        trans.close();
+
     }
 
     public void withdraw(double wd) throws IOException {
-        FileWriter fwt = new FileWriter("transactions.txt");
-        PrintWriter trans = new PrintWriter(fwt);
+
 
         balance = balance - wd;
 
-        trans.print("\n" + name + "\t:\tWithdraw\t:\t" + wd);
 
-        fwt.close();
-        trans.close();
     }
 
 

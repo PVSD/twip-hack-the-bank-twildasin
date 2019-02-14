@@ -17,12 +17,14 @@ public class Main {
         FileWriter fw = new FileWriter("accounts.txt"); //page 142 in Blue Pelican
         PrintWriter pw = new PrintWriter(fw);
 
+
         //pw.print("one");
 
         bankAccount hack = new bankAccount("Mr. Pennebacker", 0);
 
 
         ArrayList aryLst = new ArrayList();
+        StringBuffer tranFile = new StringBuffer();
         ListIterator iter = aryLst.listIterator();
         do {
             Scanner kbReader = new Scanner(System.in);
@@ -34,7 +36,7 @@ public class Main {
                 pw.print("\n" + name);
                 System.out.println("Please enter the amount of the deposit. ");
                 double amount = kbReader.nextDouble();
-                pw.print(" : " + amount);
+                pw.print(" : Starting Amount " + amount);
                 System.out.println(" "); // gives an eye pleasing blank line
                 // between accounts
                 bankAccount theAccount = new bankAccount(name, amount);
@@ -45,7 +47,7 @@ public class Main {
 
         fw.close();
         pw.close();
-        
+
         // Search aryLst and print out the name and amount of the largest bank
         // account
         List <bankAccount> myArray =  new ArrayList();
@@ -76,6 +78,7 @@ public class Main {
         //Color.sort(modArray);
         //System.out.println(myArray);
 
+        ArrayList <transactionFunction> storeDepo = new ArrayList<>();
         boolean con = true;
         boolean debug = false;
         Scanner slct = new Scanner(System.in);
@@ -149,7 +152,9 @@ public class Main {
                 //Deposits
                 if(dSlct == 1)
                 {
-
+                    Collections.sort(storeDepo);
+                    Collections.reverse(storeDepo);
+                    System.out.println(storeDepo);
                 }
 
                 //Balances
@@ -220,16 +225,29 @@ public class Main {
                 //Deposit
                 if(inpt == 1)
                 {
+                    FileWriter fwt = new FileWriter("transactions.txt");
+                    PrintWriter trans = new PrintWriter(fwt);
                     System.out.println("Please enter the amount you would like to deposit");
                     addSub = Double.parseDouble(slct.nextLine());
                     modify.deposit(addSub);
+                    storeDepo.add(new transactionFunction(modify.name, addSub));
+                    tranFile.append("\n" + modify.name + "\t:\tDeposit\t:\t" + addSub);
+                    trans.print(tranFile.toString());
+                    fwt.close();
+                    trans.close();
                 }
                 //Withdraw
                 else if(inpt == 2)
                 {
+                    FileWriter fwt = new FileWriter("transactions.txt");
+                    PrintWriter trans = new PrintWriter(fwt);
                     System.out.println("Please enter the amount you would like to withdraw");
                     addSub = Double.parseDouble(slct.nextLine());
                     modify.withdraw(addSub);
+                    tranFile.append("\n" + modify.name + "\t:\tWithdraw\t:\t" + addSub);
+                    trans.print(tranFile.toString());
+                    fwt.close();
+                    trans.close();
                 }
 
             }
